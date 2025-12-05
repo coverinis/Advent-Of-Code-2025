@@ -1,0 +1,2 @@
+[alias]
+install-bins = "install --path . --root . --bins --force"
