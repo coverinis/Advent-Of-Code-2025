@@ -1,20 +1,21 @@
 use std::fs;
 use std::io::{self, BufRead};
 
-fn main() -> io::Result<()> {
+fn main() {
     let args: Vec<String> = std::env::args().collect();
     let file_path = if args.len() > 1 {
         &args[1]
     } else {
         "day3_input.txt"
     };
-    let file = fs::File::open(file_path)?;
+
+    let file = fs::File::open(file_path).expect("Could not open file");
     let reader = io::BufReader::new(file);
 
     let mut total_joltage = 0;
 
     for line in reader.lines() {
-        let line = line?;
+        let line = line.expect("Could not read line");
         if line.trim().is_empty() {
             continue;
         }
@@ -36,6 +37,4 @@ fn main() -> io::Result<()> {
     }
 
     println!("Total output joltage: {}", total_joltage);
-
-    Ok(())
 }
